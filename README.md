@@ -31,4 +31,4 @@ git remote add origin https://github.com/유저명/Github_Use_Manual.git
 git push -u origin main
 
 :: 업로드 시작(처음이 아닌경우)
-git push
+git push# Github_Use_Manual
