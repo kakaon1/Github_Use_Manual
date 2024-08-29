@@ -1,6 +1,9 @@
+:: 복사 붙여넣기 하는방법
+Shift + Insert
+
 :: git에 업로드 전 환경설정
-git config --global user.name "kakaon1"
-git config --global user.email "rlawhcjf@naver.com"
+git config --global user.name "계정명"
+git config --global user.email "이메일"
 
 :: 디렉토리 이동
 cd test
@@ -19,12 +22,12 @@ git add .
 git commit -m "message"
 
 :: 업로드 시작(처음인 경우)
-echo "# test" >> README.md
+echo "# Github_Use_Manual" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
 git branch -M main
-git remote add origin https://github.com/kakaon1/test.git
+git remote add origin https://github.com/유저명/Github_Use_Manual.git
 git push -u origin main
 
 :: 업로드 시작(처음이 아닌경우)
