@@ -21,6 +21,11 @@ git add .
 :: 주석이 필요한 경우
 git commit -m "message"
 
+:: 기존의 저장소 때문에 문제가 생길시
+git remote remove origin
+git remote add origin https://github.com/계정명/Github_Use_Manual.git
+
+
 :: 업로드 시작(처음인 경우)
 echo "# Github_Use_Manual" >> README.md
 git init
@@ -31,9 +36,4 @@ git remote add origin https://github.com/유저명/Github_Use_Manual.git
 git push -u origin main
 
 :: 업로드 시작(처음이 아닌경우)
-git push# Github_Use_Manual
-# Github_Use_Manual
-# Github_Use_Manual
-"# Github_Use_Manual" 
-# Github_Use_Manual
-# Github_Use_Manual
+git push
