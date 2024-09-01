@@ -27,12 +27,17 @@ git remote add origin https://github.com/계정명/Github_Use_Manual.git
   
   
 :: 업로드 시작(처음인 경우)  
-echo "# Github_Use_Manual" >> README.md  
+echo "# Diablo_II_Resurrected_Multi" >> README.md  
 git init  
 git add README.md  
 git commit -m "first commit"  
 git branch -M main  
-git remote add origin https://github.com/유저명/Github_Use_Manual.git  
+git remote add origin 유저레포지토리.git  
+git push -u origin main  
+
+:: 기존의 레포지토리가 있다면.
+git remote add origin https://github.com/kakaon1/Diablo_II_Resurrected_Multi.git  
+git branch -M main  
 git push -u origin main  
   
 :: 업로드 시작(처음이 아닌경우)  
