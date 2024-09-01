@@ -39,9 +39,10 @@ git push -u origin main
 git push  
   
 :: git 레포지토리 초기화 방법  
-$ git init  
-$ git add .  
-$ git commit -m 'initial commit'  
-$ git remote add origin <깃헙 레포지토리 URL>  
+git init  
+git add .  
+git commit -m 'initial commit'  
+git remote add origin <깃헙 레포지토리 URL>  
+
 # 한번 지웠다 다시 하면 에러가 발생한다. force push 명령어를 추가하여 강제 업로드 한다!  
-$ git push origin master -f  
+git push origin master -f  
