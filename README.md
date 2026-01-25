@@ -1,319 +1,235 @@
-:: ============================================================
-:: Git 사용 매뉴얼 (Windows CMD) - 완전판
-:: ============================================================
+# Git 사용 매뉴얼 (Windows CMD)
 
-:: [복사/붙여넣기]
-:: Shift + Insert
+## 복사 붙여넣기 방법
+```bat
+Shift + Insert
+```
 
-:: ------------------------------------------------------------
-:: 초기 설정 (최초 1회만)
-:: ------------------------------------------------------------
+## Git 초기 환경설정 (최초 1회만)
+```bat
 git config --global user.name "계정명"
 git config --global user.email "이메일"
-git config --global core.autocrlf true
-git config --global init.defaultBranch main
-git config --global --list
+```
 
-:: ------------------------------------------------------------
-:: 디렉토리 이동
-:: ------------------------------------------------------------
+## 디렉토리 이동
+```bat
+cd test
+```
+
+드라이브까지 바꿀 때:
+```bat
 cd /d C:\Users\Administrator\Desktop\go
+```
 
-:: ------------------------------------------------------------
-:: 상태 확인 명령어
-:: ------------------------------------------------------------
-git status
-git log
-git log --oneline
-git log --graph --oneline --all
-git remote -v
-git branch
-git branch -a
-git rev-parse --show-toplevel
-
-:: ------------------------------------------------------------
-:: 저장소 시작 (처음 1회만)
-:: ------------------------------------------------------------
+## Git 저장소 초기화 (처음 1회만)
+```bat
 git init
-git branch -M main
+```
 
-:: ------------------------------------------------------------
-:: 원격 저장소 관리
-:: ------------------------------------------------------------
-git remote add origin https://github.com/계정명/레포명.git
-git remote set-url origin https://github.com/계정명/레포명.git
-git remote remove origin
-git remote -v
+## 파일 업로드하기
 
-:: ------------------------------------------------------------
-:: 파일 추가/제거
-:: ------------------------------------------------------------
+단일 파일:
+```bat
+git add First.txt
+```
+
+전체 업로드:
+```bat
 git add .
-git add 파일명.txt
-git add *.js
-git rm 파일명.txt
-git rm --cached 파일명.txt
+```
 
-:: ------------------------------------------------------------
-:: 커밋
-:: ------------------------------------------------------------
-git commit -m "메시지"
-git commit -am "add와 commit 동시에"
-git commit --amend -m "마지막 커밋 메시지 수정"
+## 커밋 (주석 작성)
+⚠️ CMD에서는 반드시 큰따옴표(") 사용!
+```bat
+git commit -m "message"
+```
 
-:: ------------------------------------------------------------
-:: 처음 업로드 (README 포함)
-:: ------------------------------------------------------------
+## 원격 저장소 관리
+
+기존 저장소 때문에 문제가 생길 시:
+```bat
+git remote remove origin
+git remote add origin https://github.com/계정명/레포명.git
+```
+
+URL만 변경 (더 안전):
+```bat
+git remote set-url origin https://github.com/계정명/레포명.git
+```
+
+## 처음 업로드 (README 생성)
+```bat
 echo "# 프로젝트명" >> README.md
+git init
 git add README.md
 git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/계정명/레포명.git
 git push -u origin main
+```
 
-:: ------------------------------------------------------------
-:: 처음 업로드 (기존 파일 전체)
-:: ------------------------------------------------------------
-git init
-git add .
-git commit -m "initial commit"
+## 기존 레포지토리가 있을 때
+```bat
 git branch -M main
 git remote add origin https://github.com/계정명/레포명.git
 git push -u origin main
+```
 
-:: ------------------------------------------------------------
-:: 일반 업로드 (추가/수정 후)
-:: ------------------------------------------------------------
+## 일반 업로드 (처음이 아닌 경우)
+```bat
+git push
+```
+
+## Git 레포지토리 초기화 방법
+```bat
+git init
 git add .
-git commit -m "update"
-git push
+git commit -m "initial commit"
+git remote add origin https://github.com/계정명/레포명.git
+git push -u origin main
+```
 
-:: ------------------------------------------------------------
-:: Push 거절 해결
-:: ------------------------------------------------------------
-git pull --rebase
-git push
-
-git pull origin main
-git push
-
-:: ------------------------------------------------------------
-:: 강제 Push (주의: 원격 덮어씀)
-:: ------------------------------------------------------------
+## 강제 업로드 (Force Push)
+⚠️ 주의: 원격을 덮어씀
+```bat
 git push -u origin main --force
-git push --force-with-lease
+```
 
-:: ------------------------------------------------------------
-:: Pull (원격에서 최신 받기)
-:: ------------------------------------------------------------
-git pull
-git pull origin main
+## Push 거절 시 해결
+원격이 더 최신인 경우:
+```bat
 git pull --rebase
-
-:: ------------------------------------------------------------
-:: Fetch (받기만 하고 병합 안함)
-:: ------------------------------------------------------------
-git fetch
-git fetch origin
-git fetch --all
-
-:: ------------------------------------------------------------
-:: 로컬 변경사항 무시하고 원격으로 덮어쓰기
-:: ------------------------------------------------------------
-git fetch
-git reset --hard origin/main
-
-:: ------------------------------------------------------------
-:: 변경사항 취소
-:: ------------------------------------------------------------
-git checkout -- 파일명.txt
-git restore 파일명.txt
-git restore .
-git reset HEAD 파일명.txt
-git reset --hard HEAD
-
-:: ------------------------------------------------------------
-:: 커밋 취소
-:: ------------------------------------------------------------
-git reset HEAD~1
-git reset --soft HEAD~1
-git reset --hard HEAD~1
-
-:: ------------------------------------------------------------
-:: Stash (임시 저장)
-:: ------------------------------------------------------------
-git stash
-git stash save "작업 중"
-git stash list
-git stash apply
-git stash pop
-git stash drop
-git stash clear
-
-:: ------------------------------------------------------------
-:: 브랜치 관리
-:: ------------------------------------------------------------
-git branch
-git branch 브랜치명
-git branch -M main
-git branch -d 브랜치명
-git branch -D 브랜치명
-git checkout 브랜치명
-git checkout -b 새브랜치명
-git switch 브랜치명
-git switch -c 새브랜치명
-git merge 브랜치명
-
-:: ------------------------------------------------------------
-:: 특정 파일만 이전 버전으로 복구
-:: ------------------------------------------------------------
-git checkout 커밋해시 -- 파일명.txt
-git restore --source=커밋해시 파일명.txt
-
-:: ------------------------------------------------------------
-:: 원격 브랜치 삭제
-:: ------------------------------------------------------------
-git push origin --delete 브랜치명
-
-:: ------------------------------------------------------------
-:: .gitignore 적용 (이미 추적된 파일 제거)
-:: ------------------------------------------------------------
-git rm -r --cached .
-git add .
-git commit -m "Apply .gitignore"
-
-:: ------------------------------------------------------------
-:: 태그 관리
-:: ------------------------------------------------------------
-git tag
-git tag v1.0.0
-git tag -a v1.0.0 -m "버전 1.0.0"
-git push origin v1.0.0
-git push origin --tags
-
-:: ------------------------------------------------------------
-:: 충돌 해결 후
-:: ------------------------------------------------------------
-git add .
-git commit -m "Resolve conflicts"
 git push
+```
 
-:: ------------------------------------------------------------
-:: 클론 (저장소 복제)
-:: ------------------------------------------------------------
-git clone https://github.com/계정명/레포명.git
-git clone https://github.com/계정명/레포명.git 폴더명
-
-:: ------------------------------------------------------------
-:: 서브모듈
-:: ------------------------------------------------------------
-git submodule add https://github.com/계정명/레포명.git 경로
-git submodule update --init --recursive
-
-:: ------------------------------------------------------------
-:: 잘못된 Git 저장소 제거 (상위 폴더 오염 시)
-:: ------------------------------------------------------------
+## 상위 폴더 .git 제거
+꼬였을 때:
+```bat
 cd /d C:\Users\Administrator
 rmdir /s /q .git
+```
 
-:: ------------------------------------------------------------
-:: 에러별 해결법
-:: ------------------------------------------------------------
+## 상태 확인
+현재 Git 루트 확인:
+```bat
+git rev-parse --show-toplevel
+```
 
-:: src refspec main does not match any
+상태 및 원격 확인:
+```bat
+git status
+git remote -v
+```
+
+---
+
+# 문제 발생 시 해결 방법
+
+## 에러: "src refspec main does not match any"
+원인: 커밋이 없거나 main 브랜치가 없음
+```bat
 git add .
 git commit -m "init"
 git branch -M main
 git push -u origin main
+```
 
-:: remote origin already exists
+## 에러: "remote origin already exists"
+원인: 이미 origin이 등록되어 있음
+```bat
 git remote set-url origin https://github.com/계정명/레포명.git
+```
 
-:: Everything up-to-date (커밋 안됨)
+## 에러: "Everything up-to-date"
+원인: 커밋이 안되어 있어서 푸시할 내용이 없음
+```bat
 git add .
 git commit -m "update"
 git push
+```
 
-:: rejected (fetch first)
+## 에러: "rejected (fetch first)"
+원인: 원격 저장소가 로컬보다 최신 상태
+```bat
 git pull --rebase
 git push
+```
 
-:: rejected (non-fast-forward)
+## 에러: "rejected (non-fast-forward)"
+원인: 원격과 로컬의 히스토리가 달라서 병합 필요
+```bat
 git pull origin main
 git push
+```
 
-:: pathspec 'commit'' did not match (따옴표 문제)
-git commit -m "message"
+## 에러: "pathspec 'commit'' did not match"
+원인: CMD에서 작은따옴표(') 사용으로 인한 파싱 오류
 
-:: ------------------------------------------------------------
-:: 유용한 조합 명령어
-:: ------------------------------------------------------------
+❌ 잘못된 예시:
+```bat
+git commit -m 'initial commit'
+```
 
-:: 현재 상태 전체 확인
-git status && git log --oneline -5 && git remote -v
+✅ 올바른 예시:
+```bat
+git commit -m "initial commit"
+```
 
-:: 강제 초기화 (로컬을 원격과 완전 동기화)
-git fetch origin
-git reset --hard origin/main
-git clean -fd
+## 에러: "fatal: The current branch main has no upstream branch"
+원인: 업스트림(원격 추적) 설정이 안됨
+```bat
+git push --set-upstream origin main
+```
 
-:: 빠른 업로드
-git add . && git commit -m "update" && git push
+또는:
+```bat
+git push -u origin main
+```
 
-:: 커밋 메시지 없이 빠른 커밋
-git commit -am "quick update" && git push
+## 문제: 상위 폴더가 Git 저장소로 잡힘
+증상: AppData, Documents, NTUSER.DAT 등이 Untracked로 뜸
 
-:: ------------------------------------------------------------
-:: 고급 명령어
-:: ------------------------------------------------------------
+1. 현재 Git 루트 확인:
+```bat
+git rev-parse --show-toplevel
+```
 
-:: 특정 커밋으로 되돌리기
-git revert 커밋해시
+2. 결과가 `C:/Users/Administrator`로 나오면 상위 .git 삭제:
+```bat
+cd /d C:\Users\Administrator
+rmdir /s /q .git
+```
 
-:: 커밋 합치기 (squash)
-git rebase -i HEAD~3
-
-:: 커밋 히스토리 정리
-git log --pretty=format:"%h %s" --graph
-
-:: 변경된 파일만 보기
-git diff
-git diff --name-only
-git diff HEAD
-
-:: 누가 수정했는지 확인
-git blame 파일명.txt
-
-:: 파일 이동/이름 변경
-git mv 이전파일명 새파일명
-
-:: ------------------------------------------------------------
-:: 자주 쓰는 워크플로우
-:: ------------------------------------------------------------
-
-:: [1] 처음 시작
-cd /d C:\Users\Administrator\Desktop\프로젝트
+3. 다시 프로젝트 폴더에서 초기화:
+```bat
+cd /d C:\Users\Administrator\Desktop\go
 git init
 git add .
-git commit -m "first commit"
+git commit -m "reinit"
 git branch -M main
 git remote add origin https://github.com/계정명/레포명.git
-git push -u origin main
+git push -u origin main --force
+```
 
-:: [2] 일상 업로드
-cd /d C:\Users\Administrator\Desktop\프로젝트
+## 문제: 로컬 변경사항 무시하고 원격으로 덮어쓰기
+```bat
+git fetch origin
+git reset --hard origin/main
+```
+
+## 문제: 충돌(Conflict) 발생 시
+1. 충돌 파일을 직접 수정
+2. 수정 후 추가 및 커밋:
+```bat
 git add .
-git commit -m "update"
+git commit -m "Resolve conflicts"
 git push
+```
 
-:: [3] Pull 후 Push
-git pull --rebase
-git add .
-git commit -m "update after pull"
-git push
-
-:: [4] 완전 초기화 후 재시작
-cd /d C:\Users\Administrator\Desktop\프로젝트
+## 완전 초기화 (최후의 수단)
+모든 게 꼬였을 때:
+```bat
+cd /d C:\Users\Administrator\Desktop\go
 rmdir /s /q .git
 git init
 git add .
@@ -321,11 +237,4 @@ git commit -m "reinit"
 git branch -M main
 git remote add origin https://github.com/계정명/레포명.git
 git push -u origin main --force
-
-:: [5] 원격 최신으로 로컬 덮어쓰기
-git fetch origin
-git reset --hard origin/main
-
-:: ------------------------------------------------------------
-:: 끝
-:: ------------------------------------------------------------
+```
