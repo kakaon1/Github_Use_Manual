@@ -153,27 +153,23 @@ git push
 :: ------------------------------------------------------------
 :: 에러: "pathspec 'commit'' did not match any file(s) known to git"
 :: 원인: CMD에서 작은따옴표(') 사용으로 인한 파싱 오류
+:: ❌ 잘못된 예시: git commit -m 'initial commit'
+:: ✅ 올바른 예시: git commit -m "initial commit"
 :: ------------------------------------------------------------
-:: ❌ 잘못된 예시
-git commit -m 'initial commit'
-
-:: ✅ 올바른 예시
-git commit -m "initial commit"
+git commit -m "message"
 
 :: ------------------------------------------------------------
 :: 에러: "fatal: The current branch main has no upstream branch"
 :: 원인: 업스트림(원격 추적) 설정이 안됨
 :: ------------------------------------------------------------
 git push --set-upstream origin main
-
-:: 또는
 git push -u origin main
 
 :: ------------------------------------------------------------
 :: 문제: go 폴더가 아닌 상위 폴더가 Git 저장소로 잡힘
 :: 증상: AppData, Documents, NTUSER.DAT 등이 Untracked로 뜸
+:: 해결: 1. 현재 Git 루트 확인
 :: ------------------------------------------------------------
-:: 1. 현재 Git 루트 확인
 git rev-parse --show-toplevel
 
 :: 2. 결과가 C:/Users/Administrator 로 나오면 상위 .git 삭제
@@ -197,15 +193,11 @@ git reset --hard origin/main
 
 :: ------------------------------------------------------------
 :: 문제: 충돌(Conflict) 발생 시
-:: ------------------------------------------------------------
 :: 1. 충돌 파일을 직접 수정
-:: 2. 수정 후 추가
+:: 2. 수정 후 추가 및 커밋
+:: ------------------------------------------------------------
 git add .
-
-:: 3. 커밋
 git commit -m "Resolve conflicts"
-
-:: 4. 푸시
 git push
 
 :: ------------------------------------------------------------
@@ -219,7 +211,3 @@ git commit -m "reinit"
 git branch -M main
 git remote add origin https://github.com/계정명/레포명.git
 git push -u origin main --force
-
-:: ============================================================
-:: 끝
-:: ============================================================
